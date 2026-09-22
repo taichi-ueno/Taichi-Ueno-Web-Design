@@ -428,9 +428,10 @@
       </div>
 
       <form
-        class="contact-form"
-        action="https://formspree.io/f/mdeodkyo"
-        method="POST"
+         class="contact-form"
+         id="contact-form"
+         action="https://formspree.io/f/mdeodkyo"
+         method="POST"
       >
         <div class="form-group">
           <label for="name">Name</label>
@@ -502,19 +503,17 @@
           ></textarea>
         </div>
 
-        <input
-          type="hidden"
-          name="_next"
-          value="https://taichiueno.com.au/thanks.html"
-        >
-
+        
         <button class="cta-button primary-cta form-submit" type="submit">
           Get a Free Quote
         </button>
 
         <p class="form-note">
           No obligation. You'll receive a clear quote before any work begins.
-        </p>
+        
+         </p>
+
+         <p class="form-status" id="form-status" aria-live="polite"></p>  
       </form>
     </div>
   </div>
@@ -549,5 +548,46 @@
     </p>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const formStatus = document.getElementById("form-status");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    formStatus.textContent = "";
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        window.location.href = "thanks.html";
+        return;
+      }
+
+      formStatus.textContent =
+        "Something went wrong. Please check your details and try again.";
+    } catch (error) {
+      formStatus.textContent =
+        "Unable to send your enquiry. Please try again.";
+    }
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Get a Free Quote";
+  });
+</script>
+
   </body>
 </html>
