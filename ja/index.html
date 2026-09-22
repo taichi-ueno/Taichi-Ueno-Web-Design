@@ -409,9 +409,11 @@
 
             <form
                 class="contact-form"
+                id="contact-form"
                 action="https://formspree.io/f/xvkgozyn"
-                method="POST"
->
+                 method="POST"
+            >
+
               <div class="form-group">
                 <label for="name">お名前</label>
 
@@ -493,6 +495,7 @@
               <p class="form-note">
                 ご相談・お見積もりに費用はかかりません。制作開始前に料金と制作範囲を明確にご案内します。
               </p>
+              <p class="form-status" id="form-status" aria-live="polite"></p>
             </form>
           </div>
         </div>
@@ -526,5 +529,44 @@
         </p>
       </div>
     </footer>
+    <script>
+  const form = document.getElementById("contact-form");
+  const formStatus = document.getElementById("form-status");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    submitButton.disabled = true;
+    submitButton.textContent = "送信中...";
+    formStatus.textContent = "";
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        window.location.href = "thanks.html";
+        return;
+      }
+
+      formStatus.textContent =
+        "送信できませんでした。入力内容をご確認のうえ、もう一度お試しください。";
+    } catch (error) {
+      formStatus.textContent =
+        "送信できませんでした。時間をおいて、もう一度お試しください。";
+    }
+
+    submitButton.disabled = false;
+    submitButton.textContent = "無料見積もり";
+  });
+</script>
   </body>
 </html>
