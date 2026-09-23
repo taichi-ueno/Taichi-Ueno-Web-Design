@@ -475,15 +475,14 @@ a {
 
 .contact-layout {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: start;
 }
 
 .contact-intro {
-  max-width: 520px;
+  max-width: 600px;
 }
-
 .contact-intro h2 {
   margin: 0 0 20px;
   font-size: 40px;
