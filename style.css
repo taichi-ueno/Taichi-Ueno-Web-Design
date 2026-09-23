@@ -483,6 +483,7 @@ a {
 .contact-intro {
   max-width: 600px;
 }
+
 .contact-intro h2 {
   margin: 0 0 20px;
   font-size: 40px;
@@ -869,7 +870,7 @@ html[lang="ja"] .process-step:nth-child(5) {
 
   .hero h1,
   html[lang="ja"] .hero h1 {
-    font-size: 40px;
+    font-size: 28px;
   }
 
   .hero-description {
@@ -890,7 +891,7 @@ html[lang="ja"] .process-step:nth-child(5) {
   }
 
   .section-heading h2 {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .section-heading > p:not(.section-label) {
