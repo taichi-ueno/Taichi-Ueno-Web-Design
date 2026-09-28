@@ -784,6 +784,14 @@ html[lang="ja"] .process-step:nth-child(5) {
   display: none;
 }
 
+.desktop-services-title {
+  display: inline;
+}
+
+.mobile-services-title {
+  display: none;
+}
+
 /* Tablet */
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -1125,5 +1133,14 @@ html[lang="ja"] .process-step:nth-child(5) {
   .service-card h3 {
     font-size: 20px;
   }
+
+  .desktop-services-title {
+    display: none;
+  }
+
+  .mobile-services-title {
+    display: inline;
+  }
+
 
 }
